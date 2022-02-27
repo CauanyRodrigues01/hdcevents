@@ -7,10 +7,10 @@
         <title>@yield('title')</title>
 
         <!-- CSS da aplicação -->
-        <link rel="stylesheet" href="/css/style.css">
+        <link rel="stylesheet" href="{{ asset('css/styles.css') }}">
 
         <!-- Java Script da aplicação -->
-        <script src="/js/script.js"></script>
+        <script src="{{ asset('js/app.js') }}"></script>
 
         <!-- Fonte do Google -->
         <link href="https://fonts.googleapis.com/css2?family=Roboto" rel="stylesheet">
@@ -23,7 +23,7 @@
             <nav class="navbar navbar-expand-lg navbar-light">
                 <div class="callapse navbar-collapse" id="navbar">
                     <a href="/" class="navbar-brand">
-                        <img src="/img/hdcevents_logo.svg" alt="HDC Events">
+                        <img src="{{ asset('img/logo.png') }}" alt="HDC Events">
                     </a>
                     <ul class="navbar-nav">
                         <li class="nav-item">
