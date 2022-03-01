@@ -19,18 +19,35 @@ class EventController extends Controller
         return view('events.create');
     }
 
-    public function contact() {
-        return view('contact');
+    public function store(Request $request) {
+
+        $event = new Event;
+
+        $event->title = $request->title;
+        $event->city = $request->city;
+        $event->private = $request->private;
+        $event->description = $request->description;
+
+        //Image upload
+        if($request->hasFile('image') && $request->file('image')->isValid()) {
+
+            $requestImage = $request->image;
+
+            $extension = $requestImage->extension();
+
+            $imageName = md5($requestImage->getClientOriginalName() . strtotime('now') . '.' . $extension);
+
+            $requestImage->move(public_path('img/events'), $imageName);
+
+            $event->image = $imageName;
+
+        }
+
+        $event->Save();
+
+        return redirect('/')->with('msg', 'Evento criado com sucesso!');
+
     }
 
-    public function produtos() {
-        $busca = request('search');
-
-        return view('products', ['busca' => $busca]);
-    }
-
-    public function produto($id) {
-        return view('product', ['id' => $id]);
-    }
 
 }
